@@ -1,4 +1,4 @@
-import Pandas as pd
+import pandas as pd
 from urllib.request import urlopen as Req 
 from bs4 import BeautifulSoup as Soup 
 
@@ -16,18 +16,27 @@ page_soup = Soup(page_html, "html.parser")
 #selecting
 containers = page_soup.findAll("div", {"class":"branch"})
 
-text1 = []
-text = []
+text
+text1
+final = []
+final1 =[]
+final3 = []
 for i in range(len(containers)):
     store = containers[i].findAll("div", {"class": "branch-name"})
     text = store[0].text
-    print(text)
+    print("Title : "+text)
     store1 = containers[i].findAll("div", {"class": "branch-add"})
     text1 = store1[0].text
-    print(text1)
-    
-df = pd.DataFrame(text, text2)
-                             
+    print("Info : "+text1)
+    final.append(text)
+    final1.append(text1)
+
+for i in final:
+    print(i)
 
 
-
+for f1, f2 in zip(final,final1):
+    final3.append({"Title":f1,"Information":f2})
+       
+df = pd.DataFrame(final3)
+df.to_csv('pandas2.csv')
